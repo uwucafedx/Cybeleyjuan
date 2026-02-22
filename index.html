@@ -14,19 +14,28 @@
             align-items: center;
         }
 
-        /* Contenedor que recorta los bordes negros de las fotos 1920x1080 */
-        .image-container {
-            width: 100%;
-            max-width: 500px; /* Ancho ideal para móvil */
-            overflow: hidden; /* Corta lo que sobre a los lados */
-            display: flex;
-            justify-content: center;
-        }
-
+        /* Imágenes al ancho completo del dispositivo sin recortes extra */
         img {
-            width: 177%; /* Zoom para eliminar los márgenes laterales de una imagen 16:9 */
+            width: 100%;
+            max-width: 600px; /* Tamaño máximo para que no se vea gigante en PC */
             height: auto;
             display: block;
+        }
+
+        /* Botón para parar/poner música */
+        #music-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+            background: rgba(255, 255, 255, 0.6);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            font-size: 22px;
+            display: none;
         }
 
         #overlay {
@@ -44,36 +53,51 @@
             z-index: 1000;
             cursor: pointer;
             text-align: center;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: sans-serif;
         }
     </style>
 </head>
 <body>
 
+    <button id="music-btn" onclick="toggleMusic()">🔊</button>
+
     <div id="overlay" onclick="startInvitation()">
-        <h2 style="letter-spacing: 3px;">BIENVENIDOS</h2>
+        <h2 style="letter-spacing: 2px;">BIENVENIDOS</h2>
         <p>Toca para abrir la invitación</p>
-        <span style="font-size: 30px;">✉️</span>
+        <span>✉️</span>
     </div>
 
     <audio id="player" loop>
         <source src="musica.mp4" type="audio/mp4">
     </audio>
 
-    <div class="image-container"><img src="1.png"></div>
-    <div class="image-container"><img src="2.png"></div>
-    <div class="image-container"><img src="3.png"></div>
-    <div class="image-container"><img src="4.png"></div>
-    <div class="image-container"><img src="5.png"></div>
-    <div class="image-container"><img src="6.png"></div>
-    <div class="image-container"><img src="7.png"></div>
-    <div class="image-container"><img src="8.png"></div>
+    <img src="1.png">
+    <img src="2.png">
+    <img src="3.png">
+    <img src="4.png">
+    <img src="5.png">
+    <img src="6.png">
+    <img src="7.png">
+    <img src="8.png">
 
     <script>
+        var audio = document.getElementById('player');
+        var btn = document.getElementById('music-btn');
+
         function startInvitation() {
-            var audio = document.getElementById('player');
             document.getElementById('overlay').style.display = 'none';
+            btn.style.display = 'block';
             audio.play();
+        }
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                btn.innerHTML = "🔊";
+            } else {
+                audio.pause();
+                btn.innerHTML = "🔇";
+            }
         }
     </script>
 
