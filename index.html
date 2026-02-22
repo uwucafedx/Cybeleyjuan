@@ -3,43 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitación</title>
+    <title>Nuestra Boda - Cybele & Juan</title>
     <style>
-        body, html {
+        body {
             margin: 0;
             padding: 0;
-            height: 100%;
-            overflow: hidden;
-            background-color: #000;
+            background-color: #000; /* Fondo negro para que resalten las imágenes */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .fondo {
-            width: 100vw;
-            height: 100vh;
-            object-fit: contain; /* Para que se vea la invitación completa */
+        img {
+            width: 100%;
+            max-width: 600px; /* Limita el ancho en computadoras para que no se deforme */
+            display: block;
+            height: auto;
         }
-        .controles-audio {
+        .music-container {
             position: fixed;
             bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0.7;
-            transition: opacity 0.3s;
-        }
-        .controles-audio:hover {
-            opacity: 1;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 50px;
+            z-index: 100;
         }
     </style>
 </head>
 <body>
 
-    <img src="invitacion.png" alt="Invitación" class="fondo">
-
-    <div class="controles-audio">
-        <audio controls autoplay loop>
+    <div class="music-container">
+        <audio id="player" autoplay loop controls>
             <source src="musica.mp4" type="audio/mp4">
-            Tu navegador no soporta el elemento de audio.
+            Tu navegador no soporta el audio.
         </audio>
     </div>
+
+    <img src="1.png" alt="Página 1">
+    <img src="2.png" alt="Página 2">
+    <img src="3.png" alt="Página 3">
+    <img src="4.png" alt="Página 4">
+    <img src="5.png" alt="Página 5">
+    <img src="6.png" alt="Página 6">
+    <img src="7.png" alt="Página 7">
+    <img src="8.png" alt="Página 8">
+
+    <script>
+        // Intento de reproducción automática (algunos navegadores lo bloquean hasta que el usuario interactúa)
+        window.addEventListener('click', function() {
+            var audio = document.getElementById('player');
+            if (audio.paused) {
+                audio.play();
+            }
+        });
+    </script>
 
 </body>
 </html>
