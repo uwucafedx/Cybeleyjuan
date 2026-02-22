@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página Minimalista</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Evita el scroll */
+            background-color: #000; /* Fondo negro por si la imagen tarda en cargar */
+        }
+        .fondo {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover; /* La imagen cubrirá toda la pantalla sin deformarse */
+        }
+        .controles-audio {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+        .controles-audio:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="tu-imagen.jpg" alt="Fondo" class="fondo">
+
+    <div class="controles-audio">
+        <audio controls autoplay loop>
+            <source src="tu-musica.mp3" type="audio/mpeg">
+            Tu navegador no soporta el elemento de audio.
+        </audio>
+    </div>
+
+</body>
+</html>
