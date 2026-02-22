@@ -16,7 +16,7 @@
 
         img {
             width: 100%;
-            max-width: 1000px; /* Aumentado para que en horizontal se vea mejor */
+            max-width: 1000px; 
             height: auto;
             display: block;
         }
@@ -57,7 +57,7 @@
 
         .rotate-icon {
             font-size: 40px;
-            margin: 20px 0;
+            margin-bottom: 15px;
             animation: rotate 2s infinite;
         }
 
@@ -66,6 +66,12 @@
             50% { transform: rotate(90deg); }
             100% { transform: rotate(0deg); }
         }
+
+        .welcome-text {
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
     </style>
 </head>
 <body>
@@ -73,10 +79,12 @@
     <button id="music-btn" onclick="toggleMusic()">🔊</button>
 
     <div id="overlay" onclick="startInvitation()">
-        <h2 style="letter-spacing: 3px; margin-bottom: 10px;">BIENVENIDOS</h2>
+        <h2 class="welcome-text">BIENVENIDOS</h2>
         <div class="rotate-icon">🔄</div>
-        <p style="font-size: 18px; margin: 10px 0;">Gira tu teléfono para apreciar mejor</p>
-        <p style="font-size: 14px; opacity: 0.8;">(Toca aquí para entrar)</p>
+        <p style="font-size: 18px; margin: 5px 0;">Gira tu teléfono para apreciar mejor</p>
+        <p style="font-size: 16px; margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 20px;">
+            Toca para abrir la invitación ✉️
+        </p>
     </div>
 
     <audio id="player" loop>
