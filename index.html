@@ -14,15 +14,13 @@
             align-items: center;
         }
 
-        /* Imágenes al ancho completo del dispositivo sin recortes extra */
         img {
             width: 100%;
-            max-width: 600px; /* Tamaño máximo para que no se vea gigante en PC */
+            max-width: 1000px; /* Aumentado para que en horizontal se vea mejor */
             height: auto;
             display: block;
         }
 
-        /* Botón para parar/poner música */
         #music-btn {
             position: fixed;
             top: 20px;
@@ -44,7 +42,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.95);
             color: white;
             display: flex;
             flex-direction: column;
@@ -53,7 +51,20 @@
             z-index: 1000;
             cursor: pointer;
             text-align: center;
-            font-family: sans-serif;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 20px;
+        }
+
+        .rotate-icon {
+            font-size: 40px;
+            margin: 20px 0;
+            animation: rotate 2s infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(90deg); }
+            100% { transform: rotate(0deg); }
         }
     </style>
 </head>
@@ -62,9 +73,10 @@
     <button id="music-btn" onclick="toggleMusic()">🔊</button>
 
     <div id="overlay" onclick="startInvitation()">
-        <h2 style="letter-spacing: 2px;">BIENVENIDOS</h2>
-        <p>Toca para abrir la invitación</p>
-        <span>✉️</span>
+        <h2 style="letter-spacing: 3px; margin-bottom: 10px;">BIENVENIDOS</h2>
+        <div class="rotate-icon">🔄</div>
+        <p style="font-size: 18px; margin: 10px 0;">Gira tu teléfono para apreciar mejor</p>
+        <p style="font-size: 14px; opacity: 0.8;">(Toca aquí para entrar)</p>
     </div>
 
     <audio id="player" loop>
