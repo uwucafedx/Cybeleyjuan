@@ -22,11 +22,11 @@
             display: block;
         }
 
-        /* --- Estilos del Contador con Meses --- */
+        /* --- Estilos del Contador --- */
         #countdown-container {
             color: white;
             text-align: center;
-            padding: 60px 10px;
+            padding: 60px 10px 30px 10px;
             background: linear-gradient(to bottom, #000, #111);
             width: 100%;
             max-width: 1000px;
@@ -46,7 +46,7 @@
         .timer {
             display: flex;
             justify-content: center;
-            gap: 8px; /* Espacio reducido para que entren 5 bloques */
+            gap: 8px;
         }
 
         .time-segment {
@@ -73,8 +73,35 @@
             margin-top: 5px;
             color: #d4af37;
         }
-        /* ---------------------------- */
 
+        /* --- Estilo del Botón Agendar --- */
+        .calendar-section {
+            background-color: #111;
+            width: 100%;
+            max-width: 1000px;
+            text-align: center;
+            padding-bottom: 70px;
+        }
+
+        .btn-calendar {
+            text-decoration: none;
+            color: #d4af37;
+            border: 1px solid #d4af37;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-calendar:hover {
+            background-color: #d4af37;
+            color: #000;
+        }
+
+        /* --- Interfaz de la invitación --- */
         #music-btn {
             position: fixed;
             top: 20px;
@@ -150,6 +177,14 @@
         </div>
     </div>
 
+    <div class="calendar-section">
+        <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Boda+Cybele+%26+Juan+%F0%9F%92%8D&dates=20260830T000000Z/20260830T040000Z&details=¡Acompañanos+en+este+día+especial!+💍&sf=true&output=embed" 
+           target="_blank" 
+           class="btn-calendar">
+           🗓️ Agendar en mi Calendario
+        </a>
+    </div>
+
     <script>
         var audio = document.getElementById('player');
         var btn = document.getElementById('music-btn');
@@ -165,8 +200,8 @@
             else { audio.pause(); btn.innerHTML = "🔇"; }
         }
 
-        // FECHA CONFIGURADA: 29 de Agosto 2026, 21:00hs
-        const fechaEvento = new Date(2026, 7, 29, 21, 0, 0); // Mes es 0-indexado (7 = Agosto)
+        // FECHA CONFIGURADA: 29 de Agosto 2026, 21:00hs (Mes 7 es Agosto)
+        const fechaEvento = new Date(2026, 7, 29, 21, 0, 0);
 
         function actualizarContador() {
             const ahora = new Date();
@@ -177,19 +212,17 @@
                 return;
             }
 
-            // Cálculo de meses y días restantes de forma calendario
+            // Lógica de meses calendario
             let meses = (fechaEvento.getFullYear() - ahora.getFullYear()) * 12 + (fechaEvento.getMonth() - ahora.getMonth());
             let copiaAhora = new Date(ahora.getTime());
             copiaAhora.setMonth(copiaAhora.getMonth() + meses);
 
-            // Si al sumar los meses nos pasamos del día, restamos un mes
             if (copiaAhora > fechaEvento) {
                 meses--;
                 copiaAhora = new Date(ahora.getTime());
                 copiaAhora.setMonth(copiaAhora.getMonth() + meses);
             }
 
-            // El resto de la diferencia
             let restoDiff = fechaEvento - copiaAhora;
 
             const dias = Math.floor(restoDiff / (1000 * 60 * 60 * 24));
