@@ -22,56 +22,56 @@
             display: block;
         }
 
-        /* --- Estilos del Contador --- */
+        /* --- Estilos del Contador con Meses --- */
         #countdown-container {
             color: white;
             text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(to bottom, #000, #1a1a1a);
+            padding: 60px 10px;
+            background: linear-gradient(to bottom, #000, #111);
             width: 100%;
             max-width: 1000px;
             box-sizing: border-box;
-            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         .countdown-title {
             font-weight: 300;
-            letter-spacing: 5px;
-            margin-bottom: 35px;
-            color: #d4af37; /* Dorado */
-            font-size: 1.2rem;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            color: #d4af37;
+            font-size: 1.1rem;
             text-transform: uppercase;
         }
 
         .timer {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 8px; /* Espacio reducido para que entren 5 bloques */
         }
 
         .time-segment {
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 70px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px 5px;
-            border-radius: 8px;
+            min-width: 65px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 12px 2px;
+            border-radius: 6px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
         }
 
         .number {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: bold;
             color: #fff;
         }
 
         .label {
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 8px;
+            margin-top: 5px;
             color: #d4af37;
-            opacity: 0.8;
         }
         /* ---------------------------- */
 
@@ -92,39 +92,16 @@
 
         #overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95);
             color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            cursor: pointer;
-            text-align: center;
-            padding: 20px;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            z-index: 1000; cursor: pointer; text-align: center; padding: 20px;
         }
 
-        .rotate-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-            animation: rotate 2s infinite;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            50% { transform: rotate(90deg); }
-            100% { transform: rotate(0deg); }
-        }
-
-        .welcome-text {
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
+        .rotate-icon { font-size: 40px; margin-bottom: 15px; animation: rotate 2s infinite; }
+        @keyframes rotate { 0% { transform: rotate(0deg); } 50% { transform: rotate(90deg); } 100% { transform: rotate(0deg); } }
     </style>
 </head>
 <body>
@@ -132,10 +109,10 @@
     <button id="music-btn" onclick="toggleMusic()">🔊</button>
 
     <div id="overlay" onclick="startInvitation()">
-        <h2 class="welcome-text">BIENVENIDOS</h2>
+        <h2 style="letter-spacing: 3px; font-weight: 300;">BIENVENIDOS</h2>
         <div class="rotate-icon">🔄</div>
-        <p style="font-size: 18px; margin: 5px 0;">Gira tu teléfono para apreciar mejor</p>
-        <p style="font-size: 16px; margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 20px;">
+        <p>Gira tu teléfono para apreciar mejor</p>
+        <p style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 20px;">
             Toca para abrir la invitación ✉️
         </p>
     </div>
@@ -144,33 +121,31 @@
         <source src="musica.mp4" type="audio/mp4">
     </audio>
 
-    <img src="1.png">
-    <img src="2.png">
-    <img src="3.png">
-    <img src="4.png">
-    <img src="5.png">
-    <img src="6.png">
-    <img src="7.png">
-    <img src="8.png">
+    <img src="1.png"><img src="2.png"><img src="3.png"><img src="4.png">
+    <img src="5.png"><img src="6.png"><img src="7.png"><img src="8.png">
 
     <div id="countdown-container">
         <h2 class="countdown-title">Faltan solo...</h2>
         <div class="timer">
+            <div class="time-segment">
+                <span id="months" class="number">00</span>
+                <span class="label">Meses</span>
+            </div>
             <div class="time-segment">
                 <span id="days" class="number">00</span>
                 <span class="label">Días</span>
             </div>
             <div class="time-segment">
                 <span id="hours" class="number">00</span>
-                <span class="label">Horas</span>
+                <span class="label">Hs</span>
             </div>
             <div class="time-segment">
                 <span id="minutes" class="number">00</span>
-                <span class="label">Min.</span>
+                <span class="label">Min</span>
             </div>
             <div class="time-segment">
                 <span id="seconds" class="number">00</span>
-                <span class="label">Seg.</span>
+                <span class="label">Seg</span>
             </div>
         </div>
     </div>
@@ -186,37 +161,51 @@
         }
 
         function toggleMusic() {
-            if (audio.paused) {
-                audio.play();
-                btn.innerHTML = "🔊";
-            } else {
-                audio.pause();
-                btn.innerHTML = "🔇";
-            }
+            if (audio.paused) { audio.play(); btn.innerHTML = "🔊"; } 
+            else { audio.pause(); btn.innerHTML = "🔇"; }
         }
 
-        // FECHA CONFIGURADA: 29 de Agosto 2026, 21:00hs (9 PM)
-        const fechaBoda = new Date("August 29, 2026 21:00:00").getTime();
+        // FECHA CONFIGURADA: 29 de Agosto 2026, 21:00hs
+        const fechaEvento = new Date(2026, 7, 29, 21, 0, 0); // Mes es 0-indexado (7 = Agosto)
 
-        const x = setInterval(function() {
-            const ahora = new Date().getTime();
-            const distancia = fechaBoda - ahora;
+        function actualizarContador() {
+            const ahora = new Date();
+            let diff = fechaEvento - ahora;
 
-            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+            if (diff <= 0) {
+                document.getElementById("countdown-container").innerHTML = "<h2 class='countdown-title'>¡LLEGÓ EL MOMENTO! 🥂</h2>";
+                return;
+            }
 
+            // Cálculo de meses y días restantes de forma calendario
+            let meses = (fechaEvento.getFullYear() - ahora.getFullYear()) * 12 + (fechaEvento.getMonth() - ahora.getMonth());
+            let copiaAhora = new Date(ahora.getTime());
+            copiaAhora.setMonth(copiaAhora.getMonth() + meses);
+
+            // Si al sumar los meses nos pasamos del día, restamos un mes
+            if (copiaAhora > fechaEvento) {
+                meses--;
+                copiaAhora = new Date(ahora.getTime());
+                copiaAhora.setMonth(copiaAhora.getMonth() + meses);
+            }
+
+            // El resto de la diferencia
+            let restoDiff = fechaEvento - copiaAhora;
+
+            const dias = Math.floor(restoDiff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((restoDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((restoDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((restoDiff % (1000 * 60)) / 1000);
+
+            document.getElementById("months").innerHTML = meses;
             document.getElementById("days").innerHTML = dias;
             document.getElementById("hours").innerHTML = horas;
             document.getElementById("minutes").innerHTML = minutos;
             document.getElementById("seconds").innerHTML = segundos;
+        }
 
-            if (distancia < 0) {
-                clearInterval(x);
-                document.getElementById("countdown-container").innerHTML = "<h2 class='countdown-title'>¡LLEGÓ EL MOMENTO! 🥂</h2>";
-            }
-        }, 1000);
+        setInterval(actualizarContador, 1000);
+        actualizarContador();
     </script>
 
 </body>
