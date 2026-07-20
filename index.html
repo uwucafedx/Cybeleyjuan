@@ -37,7 +37,7 @@
         .countdown-title {
             font-weight: 300;
             letter-spacing: 4px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             color: #d4af37;
             font-size: 1.1rem;
             text-transform: uppercase;
@@ -45,16 +45,15 @@
 
         /* --- Estilos para el aviso de poco tiempo --- */
         #urgency-alert {
-            font-size: 0.95rem;
-            color: #ffcccc;
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px dashed rgba(212, 175, 55, 0.4);
+            font-size: 0.9rem;
+            color: #fce38a;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             padding: 10px 15px;
             border-radius: 6px;
-            margin: 0 auto 30px auto;
-            max-width: 80%;
+            margin: 0 auto 25px auto;
+            max-width: 85%;
             letter-spacing: 1px;
-            display: none; /* Se activa por JavaScript si queda poco tiempo */
         }
 
         .timer {
@@ -142,8 +141,8 @@
     <div id="countdown-container">
         <h2 class="countdown-title">Faltan solo...</h2>
         
-        <!-- Aviso dinámico de poco tiempo -->
-        <div id="urgency-alert">¡Quedan pocos días! No te olvides de confirmar tu asistencia. ⏳</div>
+        <!-- Aviso de poco tiempo colocado de forma fija y visible -->
+        <div id="urgency-alert">⏳ ¡Quedan muy pocos días! No olvides confirmar tu asistencia.</div>
 
         <div class="timer">
             <div class="time-segment">
@@ -209,7 +208,6 @@
 
             let restoDiff = fechaEvento - copiaAhora;
 
-            const diasTotales = Math.floor(diff / (1000 * 60 * 60 * 24)); // Días totales para el aviso de urgencia
             const dias = Math.floor(restoDiff / (1000 * 60 * 60 * 24));
             const horas = Math.floor((restoDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutos = Math.floor((restoDiff % (1000 * 60 * 60)) / (1000 * 60));
@@ -220,19 +218,6 @@
             document.getElementById("hours").innerHTML = horas;
             document.getElementById("minutes").innerHTML = minutos;
             document.getElementById("seconds").innerHTML = segundos;
-
-            // --- Lógica del aviso de poco tiempo ---
-            const alertBox = document.getElementById("urgency-alert");
-            if (meses === 0 && diasTotales <= 15) {
-                alertBox.style.display = "block"; // Se muestra cuando faltan 15 días o menos
-                if (diasTotales <= 3) {
-                    alertBox.innerHTML = "⚠️ ¡Últimos días! La cuenta regresiva está en su recta final.";
-                } else {
-                    alertBox.innerHTML = "⏳ ¡Quedan muy pocos días! No olvides confirmar tu asistencia.";
-                }
-            } else {
-                alertBox.style.display = "none";
-            }
         }
 
         setInterval(actualizarContador, 1000);
